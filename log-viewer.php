@@ -1,4 +1,6 @@
 <?php
+
+
 /*
  * View log files from FileMaker Server
  * 
@@ -15,14 +17,15 @@ $password = "admin";
 // set page name, if you want to rename this file
 $filename = "log-viewer.php";
 
-// set memory limit for this script
-ini_set('memory_limit','256MB');
-
-ini_set('log_errors', 0);
-ini_set('display_errors', 0);
+ini_set('log_errors', 1);
+ini_set('display_errors', 1);
+ini_set('memory_limit', 10000000000) ;
 
 // END CONFIGURATION
+
 session_start();
+
+
 
 if (isset($_REQUEST['action']) && $_REQUEST['action'] == 'logout') {
     // log out.
@@ -32,6 +35,7 @@ if (isset($_REQUEST['action']) && $_REQUEST['action'] == 'logout') {
     // do the redirect
     header('Location: ' . $filename);
 } elseif (isset($_REQUEST['action']) && $_REQUEST['action'] == 'login') {
+
     //compare entered credentials with what is set above
     if ($_REQUEST['username'] == $username && $_REQUEST['password'] === $password) {
         //log the user in
@@ -69,8 +73,9 @@ if (isset($_REQUEST['action']) && $_REQUEST['action'] == 'logout') {
     }
 }
 
-if (isset( $_SESSION['login'] ) && $_SESSION['login'] == '1') {
+if (isset ( $_SESSION['login'] ) && $_SESSION['login'] == '1') {
 // user is logged in, get the log files to display
+
     if ($_SESSION['view_event'] == 1) {
         ob_start();
         include '../../Logs/Event.log';
@@ -222,6 +227,7 @@ if (isset( $_SESSION['login'] ) && $_SESSION['login'] == '1') {
                     <p>
                         <a href="?action=logout">Log Out</a> | <a href="?action=refresh">Refresh</a>
                     </p>
+					
                     <div id="tabs">
                         <ul>
                             <?php if ($_SESSION['view_event'] == 1) { ?>
