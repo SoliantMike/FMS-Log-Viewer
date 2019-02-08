@@ -16,7 +16,7 @@ $password = "admin";
 $filename = "log-viewer.php";
 
 // set memory limit for this script
-ini_set('memory_limit','256MB')
+ini_set('memory_limit','256MB');
 
 ini_set('log_errors', 0);
 ini_set('display_errors', 0);
