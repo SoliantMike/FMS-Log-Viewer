@@ -15,10 +15,13 @@ $password = "admin";
 // set page name, if you want to rename this file
 $filename = "log-viewer.php";
 
-// END CONFIGURATION
+// set memory limit for this script
+ini_set('memory_limit','256MB')
 
 ini_set('log_errors', 0);
 ini_set('display_errors', 0);
+
+// END CONFIGURATION
 session_start();
 
 if (isset($_REQUEST['action']) && $_REQUEST['action'] == 'logout') {
@@ -66,7 +69,7 @@ if (isset($_REQUEST['action']) && $_REQUEST['action'] == 'logout') {
     }
 }
 
-if ($_SESSION['login'] == '1') {
+if (isset( $_SESSION['login'] ) && $_SESSION['login'] == '1') {
 // user is logged in, get the log files to display
     if ($_SESSION['view_event'] == 1) {
         ob_start();
