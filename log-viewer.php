@@ -17,14 +17,12 @@ $password = "admin";
 // set page name, if you want to rename this file
 $filename = "log-viewer.php";
 
-
-
 ini_set('log_errors', 1);
 ini_set('display_errors', 1);
-
 ini_set('memory_limit', 10000000000) ;
 
 // END CONFIGURATION
+
 session_start();
 
 
